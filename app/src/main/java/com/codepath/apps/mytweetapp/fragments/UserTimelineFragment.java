@@ -54,7 +54,6 @@ public class UserTimelineFragment extends TweetsListFragment {
                 Log.d("DEBUG", errorResponse.toString());
                 throwable.printStackTrace();
             }
-
         });
     }
 

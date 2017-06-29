@@ -37,22 +37,46 @@ public class ProfileActivity extends AppCompatActivity {
         // Get the screen name from the activity that launches this
         String screenName = getIntent().getStringExtra("screen_name");
         Long userId = getIntent().getLongExtra("user_id", 0);
-        // Get the account info
-        client.getUserInfo(screenName, userId, new JsonHttpResponseHandler(){
 
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                // gives current user account's information
-                try {
-                    user = User.fromJSON(response);
-                    // add user name to toolbar
-                    getSupportActionBar().setTitle("@" + user.screenName);
-                    populateProfileHeader(user);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+        // if intent is null, pull the data from current user
+        if(screenName == null || userId == 0) {
+            client.getUserProfile(new JsonHttpResponseHandler(){
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    try {
+                        user = User.fromJSON(response);
+                        getSupportActionBar().setTitle("@" + user.screenName);
+                        populateProfileHeader(user);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                 }
-            }
-        });
+            });
+        }
+
+        else {
+
+            // Get the account info
+            client.getUserInfo(screenName, userId, new JsonHttpResponseHandler(){
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    // gives current user account's information
+                    try {
+                        user = User.fromJSON(response);
+                        // add user name to toolbar
+                        getSupportActionBar().setTitle("@" + user.screenName);
+                        populateProfileHeader(user);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+
+
+
 
         if (savedInstanceState == null) {
             // Create the user timeline fragment
