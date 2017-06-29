@@ -24,7 +24,6 @@ public class TimelineActivity extends AppCompatActivity {
     //  private TweetsListFragment listFragment;
     //   private FragmentPagerAdapter adapterViewPager;
     private ViewPager vpPager;
-
     private final int REQUEST_CODE = 20;
 
     @Override
@@ -122,7 +121,6 @@ public class TimelineActivity extends AppCompatActivity {
         public TweetsPagerAdapter(FragmentManager fn) {
             super(fn);  // pass through to the base class
         }
-
 
         // The order and creation of fragments within the pager
         @Override

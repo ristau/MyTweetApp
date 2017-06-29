@@ -5,7 +5,7 @@ buildscript {
         maven { url "https://maven.google.com" }  // new as of Google I/O 2017
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.2'
+        classpath 'com.android.tools.build:gradle:2.3.3'
     }
 }
 

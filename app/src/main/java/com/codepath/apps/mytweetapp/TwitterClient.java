@@ -1,6 +1,7 @@
 package com.codepath.apps.mytweetapp;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.codepath.oauth.OAuthBaseClient;
 import com.github.scribejava.apis.TwitterApi;
@@ -100,6 +101,7 @@ public class TwitterClient extends OAuthBaseClient {
 		String apiUrl = getApiUrl("statuses/update.json");
 		RequestParams params = new RequestParams();
 		params.put("status", tweet);
+		Log.d("DEBUG:", tweet);
 		getClient().post(apiUrl, params, handler);
 	}
 
